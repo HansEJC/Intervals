@@ -1,3 +1,4 @@
+"use strict";
 function startup() {
   document.querySelectorAll('input').forEach(inp => inp.value = getSavedValue(inp.id));
   document.querySelector(`#Save`).addEventListener(`click`, save);
@@ -69,6 +70,7 @@ function start() {
     let label = interArr[ind].label;
     document.querySelector(`#Timer`).innerText = secs2Text(time);
     document.querySelector(`#IntervalLabel`).innerText = label;
+    progress(time / toSecs(interArr[ind].time));
     time = paused ? time : time += -1;
     if (time < 0) {
       ind++;
@@ -77,6 +79,8 @@ function start() {
     }
   }, 1000);
 }
+
+const progress = (percent) => document.querySelector(`progress`).value = 1- percent;
 
 function pause() {
   let pause = document.querySelector(`#Pause`);
