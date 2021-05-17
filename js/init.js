@@ -87,5 +87,10 @@ function getSavedValue(v) {
   return localStorage.getItem(v);
 }
 
+function saveCheckbox(e) {
+  e.checkbox = true;
+  document.querySelectorAll('input[type="checkbox"]').forEach(rad => localStorage.setItem(rad.id, rad.checked));
+}
+
 const smoothdec = (a, b = 2) => +(parseFloat(a).toFixed(b)); //fix broken decimals
 document.documentElement.setAttribute('lang', navigator.language); //add language to html
