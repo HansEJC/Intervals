@@ -51,8 +51,8 @@ const toSecs = (text) => {
   return +split[0] * 60 + +split[1];
 }
 
-const secs2Text = (time) => time > 60 ? `${Math.floor(time / 60)}:${secDec(time)}` : `${secDec(time)}`;
-const secDec = (time) => time % 60 === 0 && time > 0 ? `00` : time % 60;
+const secs2Text = (time) => time >= 60 ? `${Math.floor(time / 60)}:${secDec(time)}` : `${secDec(time)}`;
+const secDec = (time) => time % 60 < 10 && time > 0 ? `0${time % 60}` : time % 60;
 
 function start() {
   document.querySelector(`#Start`).style = `display:none`;
