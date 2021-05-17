@@ -13,27 +13,18 @@
   background-color: var(--darkBlue);
 }
 
-.dark strong, .dark b, .dark a, .dark input, .dark .dygraph-axis-label, .dark #copyright ul, .dark th, .dark tr, .dark td, .dark .label, .dark h1, .dark form label, .dark ::placeholder, .dark textarea {
+.dark strong, .dark b, .dark a, .dark input, .dark #copyright ul, .dark h1, .dark form label, .dark ::placeholder, .dark textarea {
   color: var(--greyishMagenta);
 }
 
-.dark form input[type="text"], .dark form input[type="number"], .dark form input[type="datetime-local"], .dark form input[type="email"], .dark form input[type="password"], .dark form select, .dark form textarea, .dark .dygraph-roller, .dark .idents, .dark input[type="color"] {
+.dark form input {
   background-color: #222;
-  /*dark grey*/
   box-shadow: inset 0px 0px 1px 0px #000000;
 }
 
-.dark form input[type="text"]:focus, .dark form input[type="number"]:focus, .dark form input[type="datetime-local"]:focus, .dark form input[type="email"]:focus, .dark input[type="color"]:focus, .dark form input[type="password"]:focus, .dark form select:focus, .dark form textarea:focus, .dark .dygraph-roller:focus {
+.dark form input:focus {
   background: var(--darkBlue);
 }
-
-.dark tr, .dark .dygraph-legend {
-  background-color: #161b22;
-}
-
-/********************************************************************************
-/* Basic                                                                         
-/*********************************************************************************/
 
 html {
   scroll-behavior: smooth;
@@ -43,7 +34,22 @@ body, input, textarea, select, .label {
   font-family: arial, sans-serif;
   font-weight: 400;
   color: #666666;
-  /*old color was #919499;*/
+}
+
+.timerlabel {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+#IntervalLabel {
+  font-size: 2em;
+  margin: 1em 0;
+}
+
+.interval {
+  font-family: monospace;
+  font-size: 30vw;
 }
 
 button, button.label, button.button.label {
@@ -91,50 +97,11 @@ strong, b {
   color: #484d55;
 }
 
-hr {
-  border: 0;
-  border-top: solid 1px #ddd;
-}
-
 p, ol, dl, table, blockquote, form
 /*removed margin from navbar ul*/
 
   {
   margin-bottom: 2em;
-}
-
-/* Table */
-
-table {
-  border-collapse: collapse;
-  width: 100%;
-  font-size: 10pt;
-  width: 100px !important;
-  margin: 0 auto;
-  table-layout: auto;
-  border-collapse: collapse;
-}
-
-tr {
-  width: 80%;
-}
-
-th {
-  border: 1px solid black;
-  text-align: left;
-  padding: 0 8px;
-  background-color: #444;
-  color: white;
-  font-weight: bold;
-  white-space: nowrap;
-}
-
-td {
-  border: 1px solid black;
-  text-align: left;
-  padding: 0 8px;
-  color: black;
-  white-space: nowrap;
 }
 
 /* Form */
@@ -143,29 +110,14 @@ form {
   margin: 0em;
 }
 
-.label {
-  -webkit-appearance: none;
-  display: block;
-  border: solid;
-  border-width: 1px;
-  box-shadow: inset 0px 0px 1px 0px #a0a1a7;
-  border-radius: 0.35em;
-  width: 100%;
-  padding: 0.75em 1em 0.75em 1em;
-  -moz-transition: all .25s ease-in-out;
-  -webkit-transition: all .25s ease-in-out;
-  -o-transition: all .25s ease-in-out;
-  -ms-transition: all .25s ease-in-out;
-  transition: all .25s ease-in-out;
-}
-
 /* Gray */
 
 form label {
   display: block;
 }
 
-form input[type="text"], form input[type="number"], form input[type="datetime-local"], form input[type="email"], form input[type="password"], form select, form textarea {
+form input, form select, form textarea {
+  height: 3em;
   -webkit-appearance: none;
   display: block;
   border: 0;
@@ -179,17 +131,10 @@ form input[type="text"], form input[type="number"], form input[type="datetime-lo
   -o-transition: all .25s ease-in-out;
   -ms-transition: all .25s ease-in-out;
   transition: all .25s ease-in-out;
-}
-
-form input[type="text"], form input[type="number"], form input[type="datetime-local"], form input[type="email"], form input[type="password"], form select {
   line-height: 1em;
 }
 
-form textarea {
-  max-height: 10em;
-}
-
-form input[type="text"]:focus, form input[type="number"]:focus, form input[type="datetime-local"]:focus, form input[type="email"]:focus, form input[type="password"]:focus, form select:focus, form textarea:focus {
+form input:focus {
   background: #f8f8f8;
 }
 
@@ -245,10 +190,6 @@ input[type="button"]:active, input[type="submit"]:active, input[type="reset"]:ac
   padding: 0 0 2em 1em;
 }
 
-.help p, .help hr, .help .row {
-  max-width: 70ch;
-}
-
 /* Grid */
 
 .row {
@@ -267,16 +208,6 @@ input[type="button"]:active, input[type="submit"]:active, input[type="reset"]:ac
   height: 0;
 }
 
-.texty {
-  width: 90vw;
-  height: 50vw;
-  max-width: 850px;
-  max-height: 470px;
-  word-wrap: break-word;
-  word-break: break-all;
-  height: 80px;
-}
-
 @media screen and (max-width: 700px) {
   /*********************************************************************************/
   /* Header                                                                        */
@@ -286,10 +217,8 @@ input[type="button"]:active, input[type="submit"]:active, input[type="reset"]:ac
   }
 }
 
-/*********************************************************************************/
-
-/* Copyright                                                                     */
-
+/********************************************************************************
+/* Copyright                                                                    
 /*********************************************************************************/
 
 #copyright {
@@ -406,8 +335,8 @@ input:checked+.slider:before {
     line-height: 1.75em;
     letter-spacing: 0.025em;
   }
-  .label {
-    height: 38px;
+  .interval {
+    font-size: 10em;
   }
   /* Section/Article */
   section, article {
@@ -528,8 +457,6 @@ input:checked+.slider:before {
     margin-top: 0;
   }
 }
-
-/* Resets (http://meyerweb.com/eric/tools/css/reset/ | v2.0 | 20110126 | License: none (public domain)) */
 
 /* Box Model */
 

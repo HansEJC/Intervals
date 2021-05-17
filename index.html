@@ -47,13 +47,70 @@
       <div>
         <!-- Content -->
         <div id="content">
-          <div class="row">
-            <section>
-              <form onsubmit="return false;">
-                <button id="Login" class="button">Login/Signup</button>
-                <button id="Logout" class="button" style="display: none;">Logout</button>
-              </form>
-            </section>
+          <div id="InputSelection">
+            <div class="row">
+              <section>
+                <form onsubmit="return false;">
+                  <label for="NumIntervals">Number of Intervals:<input type="number" id="NumIntervals" min=1
+                      max=10></label>
+                </form>
+              </section>
+            </div>
+            <div class="row">
+              <section>
+                <label>Interval Times:</label>
+                <form id="IntervalTimers" onsubmit="return false;">
+                </form>
+              </section>
+              <section>
+                <label>Interval Labels:</label>
+                <form id="IntervalLabels" onsubmit="return false;">
+                </form>
+              </section>
+            </div>
+            <div class="timerlabel">
+              <section>
+                <form onsubmit="return false;">
+                  <button id="Save" class="button">Save</button>
+                </form>
+              </section>
+            </div>
+          </div>
+          <div id="Intervals" style="display: none;">
+            <div class="timerlabel">
+              <section>
+                <form onsubmit="return false;">
+                  <button id="Start" class="button">Start</button>
+                  <button id="Pause" class="button" style="display: none;">Pause</button>
+                </form>
+              </section>
+              <section>
+                <form">
+                  <button id="Reset" class="button">Reset</button>
+                </form>
+              </section>
+            </div>
+            <div class="timerlabel">
+              <section>
+                <form>
+                  <label id="IntervalLabel">Press Start</label>
+                </form>
+              </section>
+            </div>
+            <div class="timerlabel">
+              <section>
+                <form onsubmit="return false;">
+                  <span id="Timer" class="interval">0</span>
+                </form>
+              </section>
+            </div>
+            <div class="timerlabel">
+              <section>
+                <form onsubmit="return false;">
+                  <button id="Edit" class="button">Edit</button>
+                </form>
+              </section>
+            </div>
           </div>
         </div>
       </div>

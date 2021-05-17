@@ -58,8 +58,8 @@ if ("serviceWorker" in navigator) {
 
 //Save the value function - save it to localStorage as (ID, VALUE)
 function saveValue(e) {
-  var id = e.id;  // get the sender's id to save it .
-  var val = e.value; // get the value.
+  const id = e.id;  // get the sender's id to save it .
+  let val = e.value; // get the value.
   localStorage.setItem(id, val);// Every time user writing something, the localStorage's value will override .
   saveParameter();
 }
