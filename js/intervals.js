@@ -56,6 +56,7 @@ const secs2Text = (time) => time >= 60 ? `${Math.floor(time / 60)}:${secDec(time
 const secDec = (time) => time % 60 < 10 && time > 0 ? `0${time % 60}` : time % 60;
 
 function start() {
+  initAudio();
   document.querySelector(`#Start`).style = `display:none`;
   document.querySelector(`#Pause`).style = `display:block`;
   const num = +getSavedValue(`NumIntervals`);
@@ -76,6 +77,7 @@ function start() {
     progress(time / interArr[ind].int);
     if (time < 0) {
       ind++;
+      intervalSounds();
       if (ind === num) return reset();
     }
   }, 100);
@@ -111,6 +113,34 @@ async function share() {
   } catch (err) {
     console.log(`Error: ${err}`);
   }
+}
+
+function initAudio() {
+  const AudioContext = window.AudioContext // Default
+    || window.webkitAudioContext // Safari and old versions of Chrome
+    || false;
+  window[`a`] = AudioContext ? new AudioContext() : null;
+}
+
+// gain, frequency, duration
+function k(w, x, y) {
+  try {
+    let v = a.createOscillator();
+    let u = a.createGain();
+    v.connect(u);
+    v.frequency.value = x;
+    v.type = "square";
+    u.connect(a.destination);
+    u.gain.value = w * 0.01;
+    v.start(a.currentTime);
+    v.stop(a.currentTime + y * 0.001);
+  } catch (err) { console.log(`${err} not supported`); }
+}
+
+function intervalSounds() {
+  k(10, 3000, 100);
+  setTimeout(() => { k(10, 2900, 100) }, 100);
+  setTimeout(() => { k(10, 3000, 100) }, 200);
 }
 
 startup();
