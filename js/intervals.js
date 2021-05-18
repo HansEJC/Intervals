@@ -59,33 +59,36 @@ function start() {
   document.querySelector(`#Start`).style = `display:none`;
   document.querySelector(`#Pause`).style = `display:block`;
   const num = +getSavedValue(`NumIntervals`);
-  let interArr = [];
+  window[`interArr`] = [];
+  let timeStamp = +new Date();
   for (let i = 0; i < num; i++) {
-    interArr[i] = { label: getSavedValue(`intervalLab${i}`), time: getSavedValue(`interval${i}`) }
+    let int = toSecs(getSavedValue(`interval${i}`))
+    timeStamp += int * 1000;
+    interArr[i] = { label: getSavedValue(`intervalLab${i}`), time: timeStamp, int: int }
   }
-  let ind = 0;
-  let time = toSecs(interArr[ind].time);
+  let ind = 0, time;
   window[`paused`] = false;
   window[`x`] = setInterval(() => {
+    time = paused ? time : (interArr[ind].time - new Date()) / 1000;
     let label = interArr[ind].label;
-    document.querySelector(`#Timer`).innerText = secs2Text(time);
+    document.querySelector(`#Timer`).innerText = secs2Text(smoothdec(time));
     document.querySelector(`#IntervalLabel`).innerText = label;
-    progress(time / toSecs(interArr[ind].time));
-    time = paused ? time : time += -1;
+    progress(time / interArr[ind].int);
     if (time < 0) {
       ind++;
       if (ind === num) return reset();
-      time = toSecs(interArr[ind].time);
     }
-  }, 1000);
+  }, 100);
 }
 
-const progress = (percent) => document.querySelector(`progress`).value = 1- percent;
+const progress = (percent) => document.querySelector(`progress`).value = 1 - percent;
 
 function pause() {
   let pause = document.querySelector(`#Pause`);
-  window[`paused`] = paused ? false : true;
+  paused = paused ? false : true;
   pause.innerText = paused ? `Resume` : `Pause`;
+  window[`pauseTime`] = paused ? new Date() : +new Date() - pauseTime; //Save the time interval when paused
+  if (!paused) interArr.forEach(t => t.time += pauseTime); //Add the paused time to the timestamps
 }
 
 function reset() {
