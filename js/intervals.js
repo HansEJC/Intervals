@@ -80,7 +80,7 @@ function start() {
       intervalSounds();
       if (ind === num) return reset();
     }
-  }, 100);
+  }, 10);
 }
 
 const progress = (percent) => document.querySelector(`progress`).value = 1 - percent;
