@@ -19,7 +19,7 @@ function addInputs(e) {
   const labForm = document.querySelector(`#IntervalLabels`);
   intForm.innerHTML = ``;
   labForm.innerHTML = ``;
-  const num = +e.value || 1;
+  const num = Number(e.value) || 1;
   for (let i = 0; i < num; i++) {
     let inp = document.createElement(`input`);
     let lab = document.createElement(`input`);
@@ -49,7 +49,7 @@ function edit() {
 
 const toSecs = (text) => {
   let split = text.split(`:`);
-  return +split[0] * 60 + +split[1];
+  return Number(split[0]) * 60 + Number(split[1]);
 }
 
 const secs2Text = (time) => time >= 60 ? `${Math.floor(time / 60)}:${secDec(time)}` : `${secDec(time)}`;
@@ -59,9 +59,9 @@ function start() {
   initAudio();
   document.querySelector(`#Start`).style = `display:none`;
   document.querySelector(`#Pause`).style = `display:block`;
-  const num = +getSavedValue(`NumIntervals`);
+  const num = Number(getSavedValue(`NumIntervals`));
   window[`interArr`] = [];
-  let timeStamp = +new Date();
+  let timeStamp = Number(new Date());
   for (let i = 0; i < num; i++) {
     let int = toSecs(getSavedValue(`interval${i}`))
     timeStamp += int * 1000;
@@ -89,7 +89,7 @@ function pause() {
   let pause = document.querySelector(`#Pause`);
   paused = paused ? false : true;
   pause.innerText = paused ? `Resume` : `Pause`;
-  window[`pauseTime`] = paused ? new Date() : +new Date() - pauseTime; //Save the time interval when paused
+  window[`pauseTime`] = paused ? new Date() : Number(new Date()) - pauseTime; //Save the time interval when paused
   if (!paused) interArr.forEach(t => t.time += pauseTime); //Add the paused time to the timestamps
 }
 

@@ -92,5 +92,5 @@ function saveCheckbox(e) {
   document.querySelectorAll('input[type="checkbox"]').forEach(rad => localStorage.setItem(rad.id, rad.checked));
 }
 
-const smoothdec = (a, b = 0) => +(parseFloat(a).toFixed(b)); //fix broken decimals
+const smoothdec = (a, b = 0) => Number(parseFloat(a).toFixed(b)); //fix broken decimals
 document.documentElement.setAttribute('lang', navigator.language); //add language to html
